@@ -1,0 +1,11 @@
+spring:
+
+  liquibase:
+    changeLog: "classpath:db/changelog/db.changelog-master.yaml"
+    default-schema: "game"
+    liquibase-schema: "public"
+
+  datasource:
+    url: 'jdbc:postgresql://localhost:5432/connect-four?currentSchema=game'
+    username: mois
+    password: 12345

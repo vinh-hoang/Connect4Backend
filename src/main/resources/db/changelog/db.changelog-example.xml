@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xmlns:pro="http://www.liquibase.org/xml/ns/pro"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.3.xsd
+        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-4.3.xsd">
+
+    <changeSet author="firstChangeSet" id="1">
+        <sql dbms="postgresql">
+            CREATE SCHEMA game
+        </sql>
+
+        <createTable tableName="game">
+            <column name="game_id" type="uuid">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="game_board" type="varchar(100)">
+            </column>
+            <column name="game_state" type="varchar(100)"></column>
+        </createTable>
+
+        <createTable tableName="session">
+            <column name="session_id" type="uuid">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="player_red" type="uuid">
+            </column>
+            <column name="player_yellow" type="uuid">
+            </column>
+            <column name="last_polled_red" type="timestamp with time zone">
+            </column>
+            <column name="last_polled_yellow" type="timestamp with time zone">
+            </column>
+            <column name="game" type="uuid">
+                <constraints foreignKeyName="fk_session" referencedColumnNames="gameId"/>
+            </column>
+        </createTable>
+
+        <addForeignKeyConstraint baseTableName="session" baseColumnNames="game" constraintName="fk_session"
+                                 referencedTableName="game"
+                                 referencedColumnNames="game_id"/>
+    </changeSet>
+
+</databaseChangeLog>
