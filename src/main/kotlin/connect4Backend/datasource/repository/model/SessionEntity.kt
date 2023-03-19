@@ -11,10 +11,9 @@ import java.util.UUID
 class SessionEntity(
     @Id
     val sessionId: UUID,
-    val lastPolledRed: ZonedDateTime,
-    val lastPolledYellow: ZonedDateTime,
-    val playerRed: UUID,
-    val playerYellow: UUID,
+    val lastPolledPlayerOne: ZonedDateTime,
+    val lastPolledPayerTwo: ZonedDateTime,
+    val playerOne: UUID,
+    val playerTwo: UUID,
     val game: UUID,
 )
-

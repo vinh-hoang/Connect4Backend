@@ -16,22 +16,22 @@
             <column name="game_id" type="uuid">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
-            <column name="game_board" type="varchar(100)">
+            <column name="game_board" type="json">
             </column>
-            <column name="game_state" type="varchar(100)"></column>
+            <column name="game_state" type="varchar"></column>
         </createTable>
 
         <createTable tableName="session">
             <column name="session_id" type="uuid">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
-            <column name="player_red" type="uuid">
+            <column name="player_one" type="uuid">
             </column>
-            <column name="player_yellow" type="uuid">
+            <column name="player_two" type="uuid">
             </column>
-            <column name="last_polled_red" type="timestamp with time zone">
+            <column name="last_polled_player_one" type="timestamp with time zone">
             </column>
-            <column name="last_polled_yellow" type="timestamp with time zone">
+            <column name="last_polled_player_two" type="timestamp with time zone">
             </column>
             <column name="game" type="uuid">
                 <constraints foreignKeyName="fk_session" referencedColumnNames="gameId"/>
